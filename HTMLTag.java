@@ -1,4 +1,4 @@
-package com.qianmi.app.util;
+package com.demo.app.util;
 
 import java.util.*;
 
