@@ -22,7 +22,7 @@ public class HTMLTag {
      * @param content
      */
     public HTMLTag(Tag tag, String content) {
-        if (content == null || content.trim().equals("")) {
+        if (content == null || content.equals("")) {
             throw new NullPointerException("not empty");
         }
         this.tag = tag;
