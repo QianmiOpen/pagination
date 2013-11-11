@@ -27,6 +27,16 @@ public class HTMLTag {
         this.content = content;
     }
 
+    /**
+     * 没有内容的标签
+     * 如:img,input
+     * @param tag
+     */
+    public HTMLTag(Tag tag) {
+        this.tag = tag;
+        this.attributes = new LinkedHashMap<>();
+    }
+
     // 添加属性,如果属性内已存在改值则不新增
     public HTMLTag addAttribute(Attribute attr, String value) {
         if (value == null || value.equals("")) {
@@ -98,9 +108,13 @@ public class HTMLTag {
             }
         }
 
-        sb.append(">");
-        sb.append(content);
-        sb.append("</").append(tag).append(">");
+        if (content == null || content.trim().equals("")) {
+            sb.append("/>");
+        } else {
+            sb.append(">");
+            sb.append(content);
+            sb.append("</").append(tag).append(">");
+        }
         return sb.toString();
     }
 
@@ -113,8 +127,11 @@ public class HTMLTag {
         html.addAttribute(Attribute.ACTION, "cccc");
         System.out.println(html);
 
-        HTMLTag lnk = new HTMLTag(HTMLTag.Tag.SPAN, "测试").addAttribute(HTMLTag.Attribute.CLASS, "current");
+        HTMLTag lnk = new HTMLTag(Tag.SPAN, "测试").addAttribute(Attribute.CLASS, "current");
         System.out.println(lnk);
+
+        HTMLTag img = new HTMLTag(Tag.IMG).addAttribute(Attribute.SRC, "logo.png");
+        System.out.println(img);
     }
 
     /**
