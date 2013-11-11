@@ -1,4 +1,4 @@
-package com.qianmi.app.util;
+package com.demo.app.util;
 
 /**
  * 通用分页
