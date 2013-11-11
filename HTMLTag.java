@@ -22,6 +22,9 @@ public class HTMLTag {
      * @param content
      */
     public HTMLTag(Tag tag, String content) {
+        if (content == null || content.trim().equals("")) {
+            throw new NullPointerException("not empty");
+        }
         this.tag = tag;
         this.attributes = new LinkedHashMap<>();
         this.content = content;
