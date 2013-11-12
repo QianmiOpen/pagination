@@ -76,7 +76,7 @@ public class HTMLTag {
         // new ArrayList 解决 UnsupportedOperationException
         List<String> attrValueList = new ArrayList(Arrays.asList(attrValue.split(ATTR_SPACE)));
         if (attrValueList.size() == 1 && attrValueList.contains(value)) {
-            attributes.remove(value);
+            attributes.remove(attr);
             return this;
         }
 
