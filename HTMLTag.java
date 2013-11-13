@@ -111,7 +111,7 @@ public class HTMLTag {
             }
         }
 
-        if (content == null || content.trim().equals("")) {
+        if (content == null || content.equals("")) {
             sb.append("/>");
         } else {
             sb.append(">");
