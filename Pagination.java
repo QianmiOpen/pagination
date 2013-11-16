@@ -68,7 +68,7 @@ public class Pagination {
      * 计算最大页数
      */
     public int numPages() {
-        return (int) Math.ceil(maxentries / items_per_page);
+        return (int) Math.ceil((double)maxentries / (double)items_per_page);
     }
 
     /**
