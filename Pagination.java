@@ -76,7 +76,7 @@ public class Pagination {
      * current_page 和 num_display_entries
      */
     public int[] getInterval() {
-        int ne_half = (int) Math.ceil(num_display_entries / 2);
+        int ne_half = (int) Math.ceil((double)num_display_entries / 2d);
         int np = numPages();
         int upper_limit = np - num_display_entries;
         int start = current_page > ne_half ? Math.max(Math.min(current_page - ne_half, upper_limit), 0) : 0;
