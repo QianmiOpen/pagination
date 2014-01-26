@@ -1,9 +1,9 @@
-package com.demo.app.util;
+package com.qianmi.app.util;
 
 /**
  * 通用分页
  *
- * @author @mysoko
+ * @author mysoko
  */
 public class Pagination {
 
@@ -153,7 +153,7 @@ public class Pagination {
         panel.append(lnk);
     }
 
-    private class Appendopts {
+    static class Appendopts {
         public String text;
         public String classes;
 
@@ -168,12 +168,13 @@ public class Pagination {
 
     public static void main(String[] args) {
         Pagination p = new Pagination();
-        p.setMaxentries(1000);
-        p.setCurrent_page(10);
-        p.setItems_per_page(5);
-        p.setNum_display_entries(5);
-        p.setNum_edge_entries(1);
+        p.setMaxentries(100);
+        p.setItems_per_page(30);
+        //p.setNum_display_entries(5);
+        //p.setNum_edge_entries(1);
+        //p.setCurrent_page(2);
         System.out.println(p.drawLinks());
+
     }
 
 }
