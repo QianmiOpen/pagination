@@ -1,11 +1,11 @@
-package com.demo.app.util;
+package com.qianmi.app.util;
 
 import java.util.*;
 
 /**
  * HTMLTag
  *
- * @author @mysoko
+ * @author mysoko
  */
 public class HTMLTag {
 
@@ -17,13 +17,13 @@ public class HTMLTag {
     private String content;                       // 标签内容
 
     /**
-     * 构造一个标签必须有名称和内容
+     * 构造一个必须有名称和内容的标签
      * @param tag
      * @param content
      */
     public HTMLTag(Tag tag, String content) {
-        if (content == null || content.equals("")) {
-            throw new NullPointerException("not empty");
+        if (content == null) {
+            throw new NullPointerException();
         }
         this.tag = tag;
         this.attributes = new LinkedHashMap<>();
@@ -31,7 +31,7 @@ public class HTMLTag {
     }
 
     /**
-     * 没有内容的标签
+     * 构造一个没有内容的标签
      * 如:img,input
      * @param tag
      */
@@ -79,53 +79,53 @@ public class HTMLTag {
             attributes.remove(attr);
             return this;
         }
-
         attrValueList.remove(value);
-        StringBuffer sb = new StringBuffer("");
+
+        StringBuffer attrStr = new StringBuffer("");
         for (int i = 0, len = attrValueList.size(); i < len; i++) {
-            sb.append(attrValueList.get(i));
+            attrStr.append(attrValueList.get(i));
             if (i != len - 1) {
-                sb.append(ATTR_SPACE);
+                attrStr.append(ATTR_SPACE);
             }
         }
 
-        attributes.put(attr, sb.toString());
+        attributes.put(attr, attrStr.toString());
         return this;
     }
 
     @Override
     public String toString() {
-        StringBuffer sb = new StringBuffer("");
-        sb.append("<").append(tag);
+        StringBuffer tagStr = new StringBuffer("");
+        tagStr.append("<").append(tag);
 
         int size = attributes.size();
         if (size > 0) {
-            sb.append(ATTR_SPACE);
+            tagStr.append(ATTR_SPACE);
         }
 
         int i = 0;
         for(Map.Entry<Attribute, String> entry : attributes.entrySet()) {
-            sb.append(entry.getKey()).append("=\"").append(entry.getValue()).append("\"");
+            tagStr.append(entry.getKey()).append("=\"").append(entry.getValue()).append("\"");
             if (++i != size) {
-                sb.append(ATTR_SPACE);
+                tagStr.append(ATTR_SPACE);
             }
         }
 
-        if (content == null || content.equals("")) {
-            sb.append("/>");
+        if (content == null) {
+            tagStr.append("/>");
         } else {
-            sb.append(">");
-            sb.append(content);
-            sb.append("</").append(tag).append(">");
+            tagStr.append(">");
+            tagStr.append(content);
+            tagStr.append("</").append(tag).append(">");
         }
-        return sb.toString();
+        return tagStr.toString();
     }
 
     public static void main(String[] args) {
-        HTMLTag html = new HTMLTag(Tag.A, "测试a标签").addAttribute(Attribute.CLASS, "cur2rent").addAttribute(Attribute.CLASS, "current");
+        HTMLTag html = new HTMLTag(Tag.A, "测试a标签").addAttribute(Attribute.CLASS, "current").addAttribute(Attribute.CLASS, "current");
         html.addAttribute(Attribute.ID, "id-1");
         html.removeAttribute(Attribute.ID);
-        html.removeAttribute(Attribute.CLASS, "current");
+//        html.removeAttribute(Attribute.CLASS, "current");
         html.removeAttribute(Attribute.CLASS, "cc");
         html.addAttribute(Attribute.ACTION, "cccc");
         System.out.println(html);
@@ -135,6 +135,7 @@ public class HTMLTag {
 
         HTMLTag img = new HTMLTag(Tag.IMG).addAttribute(Attribute.SRC, "logo.png");
         System.out.println(img);
+
     }
 
     /**
